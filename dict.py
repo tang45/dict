@@ -4,18 +4,18 @@ import sys
 import json
 import urllib2
 
+##
+# @file dict.py
+# @translation  
+# @author Feei(wufeifei@wufeifei.com)
+# @update by tang45, support translate chinese
+# @version 1.0
+# @date 2015-12-06
 
-"""
-dict - Chinese/English Translation
-@author Feei(wufeifei@wufeifei.com)
-@date   2013.12.09
-"""
 
 
 class Dict:
-    key = '716426270'
-    keyFrom = 'wufeifei'
-    api = 'http://fanyi.youdao.com/openapi.do?keyfrom=wufeifei&key=716426270&type=data&doctype=json&version=1.1&q='
+    api = 'http://fanyi.youdao.com/openapi.do?keyfrom=bortherland&key=876662865&type=data&doctype=json&version=1.1&q='
     content = None
 
     def __init__(self, argv):
@@ -23,7 +23,7 @@ class Dict:
             self.api = self.api + argv[0]
             self.translate()
         else:
-            print 'ERROR'
+            print 'NO QUERY'
 
     def translate(self):
         content = urllib2.urlopen(self.api).read()
@@ -55,15 +55,15 @@ class Dict:
             #     for j in range(0, len(self.content['web'][i]['value'])):
             #         print self.content['web'][i]['value'][j]
         elif code == 20:  # Text to long
-            print 'WORD TO LONG'
+            print 'TEXT TO LONG'
         elif code == 30:  # Trans error
             print 'TRANSLATE ERROR'
         elif code == 40:  # Don't support this language
-            print 'CAN\'T SUPPORT THIS LANGUAGE'
+            print 'NOTT SUPPORT THIS LANGUAGE'
         elif code == 50:  # Key failed
             print 'KEY FAILED'
         elif code == 60:  # Don't have this word
-            print 'DO\'T HAVE THIS WORD'
+            print 'NO RESULT'
 
 if __name__ == '__main__':
     Dict(sys.argv[1:])
