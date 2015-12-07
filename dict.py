@@ -2,7 +2,7 @@
 
 import sys
 import json
-import urllib2
+import urllib
 
 ##
 # @file dict.py
@@ -11,8 +11,6 @@ import urllib2
 # @update by tang45, support translate chinese
 # @version 1.0
 # @date 2015-12-06
-
-
 
 class Dict:
     api = 'http://fanyi.youdao.com/openapi.do?keyfrom=bortherland&key=876662865&type=data&doctype=json&version=1.1&q='
@@ -26,23 +24,23 @@ class Dict:
             print 'NO QUERY'
 
     def translate(self):
-        content = urllib2.urlopen(self.api).read()
+        content = urllib.urlopen(self.api).read()
         self.content = json.loads(content)
         self.parse()
 
     def parse(self):
         code = self.content['errorCode']
         if code == 0:  # Success
-            try:
-                u = self.content['basic']['us-phonetic']
-                e = self.content['basic']['uk-phonetic']
-                explains = self.content['basic']['explains']
-            except KeyError:
-                u = 'None'
-                e = 'None'
-                explains = 'None'
             print '\033[1;31m################################### \033[0m'
-            print '\033[1;31m# \033[0m', self.content['query'], self.content['translation'][0], '(U:', u, 'E:', e, ')'
+            print '\033[1;31m# \033[0m', self.content['query'], self.content['translation'][0],
+            if 'us-phonetic' in self.content['basic'] and 'uk-phonetic' in self.content['basic']:
+                print '(U:', self.content['basic']['us-phonetic'], 'E:', self.content['basic']['uk-phonetic'], ')'
+            elif 'phonetic' in self.content['basic']:
+                print u'(\u62fc\u97f3:', self.content['basic']['phonetic'], ')' 
+            if 'explains' in self.content['basic']:
+                explains = self.content['basic']['explains']
+            else:
+                explains = 'None'
             if explains != 'None':
                 for i in range(0, len(explains)):
                     print '\033[1;31m# \033[0m', explains[i]
