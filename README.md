@@ -1,13 +1,14 @@
 dict
 ====
 
-linux命令行下翻译工具
+命令行下翻译工具
 
 ---
 #### Install
 
 ```
-wget https://raw.githubusercontent.com/wufeifei/dict/master/dict.py
+git clone https://github.com/wufeifei/dict.git
+cd dict
 sudo mv ./dict.py /usr/bin/dict
 sudo chmod +x /usr/bin/dict
 ```
@@ -15,12 +16,16 @@ sudo chmod +x /usr/bin/dict
 #### Usage
 
 ```
-$ dict test
 ###################################
-#  test 测试 (U: tɛst E: test )
-#  n. 试验；检验
-#  vt. 试验；测试
-#  vi. 试验；测试
-#  n. (Test)人名；(英)特斯特
+#  dick 迪克 (U: dik E: dik )
+#  n. 阴茎，鸡巴；侦探；誓言
+###################################
+```
+
+
+```
+###################################
+#  鸡巴 dick (拼音: jī bā )
+#  dick
 ###################################
 ```
