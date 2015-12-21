@@ -33,13 +33,14 @@ class Dict:
         if code == 0:  # Success
             print '\033[1;31m################################### \033[0m'
             print '\033[1;31m# \033[0m', self.content['query'], self.content['translation'][0],
-            if 'us-phonetic' in self.content['basic'] and 'uk-phonetic' in self.content['basic']:
-                print '(U:', self.content['basic']['us-phonetic'], 'E:', self.content['basic']['uk-phonetic'], ')'
-            elif 'phonetic' in self.content['basic']:
-                print u'(\u62fc\u97f3:', self.content['basic']['phonetic'], ')' 
-            if 'explains' in self.content['basic']:
-                explains = self.content['basic']['explains']
-            else:
+            try:
+                if 'us-phonetic' in self.content['basic'] and 'uk-phonetic' in self.content['basic']:
+                    print '(U:', self.content['basic']['us-phonetic'], 'E:', self.content['basic']['uk-phonetic'], ')'
+                elif 'phonetic' in self.content['basic']:
+                    print u'(\u62fc\u97f3:', self.content['basic']['phonetic'], ')' 
+                if 'explains' in self.content['basic']:
+                    explains = self.content['basic']['explains']
+            except KeyError:
                 explains = 'None'
             if explains != 'None':
                 for i in range(0, len(explains)):
